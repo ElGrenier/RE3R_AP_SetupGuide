@@ -146,7 +146,7 @@ function exportYAML() {
         `${tab}early_fire_hose: ${form_data['early_fire_hose'] == 'on' ? true : false}\n` +
         `${tab}extra_sewer_items: ${form_data['extra_sewer_items'] == 'on' ? true : false}\n` +
         `${tab}allow_missable_locations: ${form_data['allow_missable_locations'] == 'on' ? true : false}\n` +
-        `${tab}allow_progression_in_labs: ${form_data['allow_progression_in_labs'] == 'on' ? true : false}\n`;
+        `${tab}allow_progression_in_nest: ${form_data['allow_progression_in_nest'] == 'on' ? true : false}\n`;
 
     fileContents += `${tab}oops_all_grenades: ${form_data['oops_all_grenades'] == 'on' ? true : false}\n` +
         `${tab}oops_all_handguns: ${form_data['oops_all_handguns'] == 'on' ? true : false}\n`;
