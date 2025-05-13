@@ -60,12 +60,12 @@ function pageActiveFromNavLink(obj) {
     history.pushState({}, "", targetPage);
 }
 
-function loadDatapackage(character, scenario) {
-    const item_data = $.get(`data/${character}/items.json`).done(function (data) { return data; });
-    const location_data = $.get(`data/${character}/${scenario}/locations.json`).done(function (data) { return data; });
-    const location_hardcore_data = $.get(`data/${character}/${scenario}/locations_hardcore.json`).done(function (data) { return data; });
-    const location_nightmare_data = $.get(`data/${character}/${scenario}/locations_nightmare.json`).done(function (data) { return data; });
-    const location_inferno_data = $.get(`data/${character}/${scenario}/locations_inferno.json`).done(function (data) { return data; });
+function loadDatapackage() {
+    const item_data = $.get(`data/items.json`).done(function (data) { return data; });
+    const location_data = $.get(`data/locations.json`).done(function (data) { return data; });
+    const location_hardcore_data = $.get(`data/locations_hardcore.json`).done(function (data) { return data; });
+    const location_nightmare_data = $.get(`data/locations_nightmare.json`).done(function (data) { return data; });
+    const location_inferno_data = $.get(`data/locations_inferno.json`).done(function (data) { return data; });
 
     Promise.all([item_data, location_data, location_hardcore_data, location_nightmare_data, location_inferno_data]).then(
         function (combined_data) {
@@ -136,9 +136,7 @@ function exportYAML() {
         `${tab}progression_balancing: 50\n` +
         `${tab}accessibility: items\n`;
 
-    fileContents += `${tab}character: ${form_data['character']}\n` +
-        `${tab}scenario: ${form_data['scenario']}\n` +
-        `${tab}difficulty: ${form_data['difficulty']}\n` +
+    fileContents += `${tab}difficulty: ${form_data['difficulty']}\n` +
         `${tab}death_link: ${form_data['death_link'] == 'on' ? true : false}\n`;
 
     fileContents += `${tab}starting_hip_pouches: ${form_data['starting_hip_pouches']}\n` +
