@@ -1,16 +1,4 @@
 $(function() {
-    const updateScenarioFromDatapackageDropdown = function() {
-        let character = 'jill';
-        let scenario = 'a';
-        let dropdown_value = $("select[name='datapackage_scenario']").val();
-
-        if (dropdown_value) {
-            [character, scenario] = dropdown_value.split('_');
-        }
-
-        loadDatapackage(character, scenario);
-    };
-
     if (window.location.hash != '') {
         const nav_link = $(`a.nav-link[href='${window.location.hash}']`);
 
@@ -19,7 +7,7 @@ $(function() {
             pageActiveFromNavLink(nav_link);
 
             if (window.location.hash == '#datapackage') {
-                updateScenarioFromDatapackageDropdown();
+                loadDatapackage();
             }
         }
     }
@@ -37,8 +25,7 @@ $(function() {
         pageActiveFromNavLink(nav_link);
     });
 
-    $('#link_datapackage').click(updateScenarioFromDatapackageDropdown);
-    $("select[name='datapackage_scenario']").change(updateScenarioFromDatapackageDropdown);
+    $('#link_datapackage').click(loadDatapackage());
 
     $('img').on('click', function(e) {
         $('#imgViewer').empty().append( $(e.currentTarget).clone().removeClass('img-responsive').removeClass('img-thumbnail') );
@@ -61,7 +48,8 @@ function pageActiveFromNavLink(obj) {
 }
 
 function loadDatapackage() {
-    const item_data = $.get(`data/items.json`).done(function (data) { return data; });
+    let special = 'special';
+    const item_data = $.get(`/data/items.json`).done(function (data) { return data; });
     const location_data = $.get(`data/locations.json`).done(function (data) { return data; });
     const location_hardcore_data = $.get(`data/locations_hardcore.json`).done(function (data) { return data; });
     const location_nightmare_data = $.get(`data/locations_nightmare.json`).done(function (data) { return data; });
